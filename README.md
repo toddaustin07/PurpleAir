@@ -39,7 +39,7 @@ In the PurpleAir device Settings screen, configure the following fields:
 * **Search box size - value**
   * If *Search for devices* is enabled, provide the number of miles or kilometers that bounds the latitudinal and longitudinal sides of the coordinate box
 * **Search box size - units**
-  * If *Search for devices* is enabled, provide the units (miles or kilometers) associated with the box size value provide above
+  * If *Search for devices* is enabled, choose the units (miles or kilometers) associated with the box size value provide above
 * **Use weighted average?**
   * If *Search for devices* is enabled, choose whether or not to compute the average AQI of all sensors with a weighting towards those that are closer
 * **Proxy Type**
