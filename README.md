@@ -35,7 +35,7 @@ In the PurpleAir device Settings screen, configure the following fields:
 * **Sensor index**
   * If *Search for devices* is disabled, provide the desired sensor index number here
 * **Search box center**
-  * If *Search for devices* is enabled, provide the latitude, longitude coordinates here which would represent the center of the box
+  * If *Search for devices* is enabled, provide the latitude, longitude coordinates here which would represent the center of the box.  The coordinates must be provided as two comma-separated decimal numbers
 * **Search box size - value**
   * If *Search for devices* is enabled, provide the number of miles or kilometers that defines the size of the coordinate box
 * **Search box size - units**
