@@ -25,11 +25,11 @@ Install edgebridge per the instructions [here](https://github.com/toddaustin07/e
 ## Configuration
 In the PurpleAir device Settings screen, configure the following fields:
 * **Update Interval**
-  * Choose an automatic refresh interval from the list - from every minute to every three hours
+  * Choose an automatic refresh interval from the list - from every minute, to every three hours
 * **Averaging Period**
   * Choose averaging period for the sensor readings - from one minute, to one week
 * **Search for devices**
-  * Turn on to search for devices within a defined coordinate box; turn off to use a single specified sensor
+  * Enable (turn on) to search for devices within a defined coordinate box; disable (turn off) to use a single specified sensor
 * **Private key**
   * If *Search for devices* is disabled, and the desired sensor requires a private key, configure it here
 * **Sensor index**
