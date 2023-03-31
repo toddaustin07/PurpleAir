@@ -1,0 +1,5 @@
+name: 'Purple Air Quality'
+packageKey: 'purpleairv1'
+permissions:
+    lan: {}
+    discovery: {}

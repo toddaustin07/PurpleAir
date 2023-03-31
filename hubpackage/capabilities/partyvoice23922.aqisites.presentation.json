@@ -1,0 +1,34 @@
+{
+    "dashboard": {
+        "states": [
+            {
+                "label": "{{sites.value}}"
+            }
+        ],
+        "actions": []
+    },
+    "detailView": [
+        {
+            "label": "{{i18n.label}}",
+            "displayType": "state",
+            "state": {
+                "label": "{{sites.value}}"
+            }
+        }
+    ],
+    "automation": {
+        "conditions": [
+            {
+                "label": "Sites list",
+                "displayType": "textField",
+                "textField": {
+                    "value": "sites.value",
+                    "valueType": "string"
+                }
+            }
+        ],
+        "actions": []
+    },
+    "id": "partyvoice23922.aqisites",
+    "version": 1
+}

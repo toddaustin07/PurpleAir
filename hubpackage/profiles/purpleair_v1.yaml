@@ -1,0 +1,146 @@
+name: purpleair.v1
+components:
+  - id: main
+    label: "Air Quality"
+    capabilities:
+      - id: airQualitySensor
+        version: 1
+        config:
+          values:
+          - key: "airQuality.value"
+            range: [0, 500]
+      - id: partyvoice23922.aqicategory
+        version: 1
+      - id: partyvoice23922.aqisites
+        version: 1
+      - id: refresh
+        version: 1
+    categories:
+      - name: AirQualityDetector
+metadata:
+  ocfDeviceType: x.com.st.d.airqualitysensor
+preferences:
+  - title: "Update Interval"
+    name: interval
+    description: "Choose an interval"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        1min: "1 Minutes"
+        5min: "5 Minutes"
+        10min: "10 Minutes"
+        15min: "15 Minutes"
+        30min: "30 Minutes"
+        60min: "One hour"
+        180min: "Three hours"
+      default: 60min
+  - title: "Averaging Period"
+    name: avgperiod
+    description: "Choose an option"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+         pm1min: "1 min"
+         pm10min: "10 minutes"
+         pm30min: "30 minutes"
+         pm60min: "1 hour"
+         pm6hr: "6 hours"
+         pm24hr: "1 day"
+         pm1wk: "1 week"
+      default: pm60min
+  - title: "Search for devices"
+    name: search
+    description: "Enable/Disable"
+    required: true
+    preferenceType: boolean
+    definition:
+      default: false
+  - title: "Private key (if no search)"
+    name: readkey
+    description: "Req'd for private devices"
+    required: false
+    preferenceType: string
+    definition:
+      stringType: text
+      default: null
+  - title: "Sensor index (if no search)"
+    name: sensorindex
+    description: "Integer"
+    required: false
+    preferenceType: integer
+    definition:
+      minimum: 0
+      default: 0 
+  - title: "Search box center"
+    name: center
+    description: "Lat, Long (coordinates)"
+    required: false
+    preferenceType: string
+    definition:
+      stringType: text
+      default: "nn.nnnnnnn, -nnn.nnnnnnn"
+  - title: "Search box size - value"
+    name: sizevalue
+    description: "Distance from center"
+    required: false
+    preferenceType: number
+    definition:
+      minimum: 1
+      maximum: 500
+      default: 5
+  - title: "Search box size - units"
+    name: sizeunits
+    description: "Value from center"
+    required: false
+    preferenceType: enumeration
+    definition:
+      options:
+        miles: "Miles"
+        km: "Kilometers"
+      default: miles
+  - title: "Use weighted average?"
+    name: weighted
+    description: "Enable/Disable"
+    required: true
+    preferenceType: boolean
+    definition:
+      default: false
+  - title: "Proxy Type"
+    name: proxytype
+    description: "Choose option"
+    required: true
+    preferenceType: enumeration
+    definition:
+      options:
+        edge: "Edge Bridge Server"
+        generic: "Standard Proxy Server"
+        none: "None"
+      default: edge
+  - title: "Proxy Server Address"
+    name: proxyaddr
+    description: "IP:port"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      minLength: 17
+      default: "http://192.168.1.n:nnnn"
+  - title: "Response Timeout"
+    name: timeout
+    description: "Number of seconds"
+    required: true
+    preferenceType: number
+    definition:
+      minimum: 1
+      maximum: 60
+      default: 3
+  - title: "API Key"
+    name: apikey
+    description: "hex string"
+    required: true
+    preferenceType: string
+    definition:
+      stringType: text
+      default: "xxxx"

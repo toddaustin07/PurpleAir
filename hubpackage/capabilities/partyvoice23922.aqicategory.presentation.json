@@ -1,0 +1,71 @@
+{
+    "dashboard": {
+        "states": [
+            {
+                "label": "{{category.value}}"
+            }
+        ],
+        "actions": []
+    },
+    "detailView": [
+        {
+            "label": "{{i18n.label}}",
+            "displayType": "state",
+            "state": {
+                "label": "{{category.value}}"
+            }
+        }
+    ],
+    "automation": {
+        "conditions": [
+            {
+                "label": "AQI Category",
+                "displayType": "list",
+                "list": {
+                    "alternatives": [
+                        {
+                            "key": "Good",
+                            "value": "Good",
+                            "type": "active"
+                        },
+                        {
+                            "key": "Moderate",
+                            "value": "Moderate",
+                            "type": "active"
+                        },
+                        {
+                            "key": "Unhealthy for sensitive groups",
+                            "value": "Unhealthy for sensitive groups",
+                            "type": "active"
+                        },
+                        {
+                            "key": "Unhealthy",
+                            "value": "Unhealthy",
+                            "type": "active"
+                        },
+                        {
+                            "key": "Very unhealthy",
+                            "value": "Very unhealthy",
+                            "type": "active"
+                        },
+                        {
+                            "key": "Hazardous",
+                            "value": "Hazardous",
+                            "type": "active"
+                        },
+                        {
+                            "key": "Extremely hazardous!",
+                            "value": "Extremely hazardous!",
+                            "type": "active"
+                        }
+                    ],
+                    "value": "category.value",
+                    "valueType": "string"
+                }
+            }
+        ],
+        "actions": []
+    },
+    "id": "partyvoice23922.aqicategory",
+    "version": 1
+}
