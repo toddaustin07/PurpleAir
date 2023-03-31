@@ -50,3 +50,13 @@ In the PurpleAir device Settings screen, configure the following fields:
   * Provide the desired amount of time to wait for a response from the PurpleAir servers before timing out
 * **API Key**
   * Provide the API Key assigned to you from PurpleAir to access their API
+
+### Usage
+Following the configuration of all device Settings, return to the device Controls screen and use the 'swipe-down' gesture.  This will force a refresh based on your latest Settings options and the AQI, AQI Category, and Sensor sites used fields should get populated.
+
+Reference the PurpleAir [map](https://map.purpleair.com/?mylocation) to see all sensors in your vicinity.
+
+The data displayed will be refreshed based on the update interval configured in device Settings (e.g. every minute, every hour, etc.).
+
+### Automations
+All three fields are available for IF conditions of automation routines or Rules.  No command actions are available in this device.
