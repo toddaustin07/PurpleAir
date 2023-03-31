@@ -65,5 +65,6 @@ All three fields are available for IF conditions of automation routines or Rules
 If the device appears not to be working:
 * Confirm your proxy server type and address are properly configured
 * Be certain you have entered your API Key correctly
-* Monitor the edgebridge (or other proxy server) console or file log to confirm that requests are being received from your hub, and forwarded to PurpleAir.  If necessary, run edgebridge with the -d command line parameter to display all sent and received data; also take note of any HTTP errors that may be returned by the PurpleAir servers.  Be sure to be running a version of edgebridge dated 3/31/23 or later.
-* Use the SmartThings [CLI](https://github.com/SmartThingsCommunity/smartthings-cli) to generage driver logs; send me a direct message in the SmartThings community for assistance in diagnosing problems
+* Be sure you are running a version of edgebridge dated 3/31/23 or later, if applicable
+* Monitor the edgebridge (or other proxy server) console or file log to confirm that requests are being received from your hub, and forwarded to PurpleAir.  If necessary, run edgebridge with the -d command line parameter to display all sent and received data; also take note of any HTTP errors that may be returned by the PurpleAir servers. 
+* Use the SmartThings [CLI](https://github.com/SmartThingsCommunity/smartthings-cli) to generage driver logs; send me a direct message in the SmartThings community for assistance in diagnosing the log output
