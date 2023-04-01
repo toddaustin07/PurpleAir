@@ -1,0 +1,41 @@
+{
+    "id": "partyvoice23922.aqisetinterval",
+    "version": 1,
+    "status": "proposed",
+    "name": "aqisetinterval",
+    "ephemeral": false,
+    "attributes": {
+        "interval": {
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "maxLength": 20
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "value"
+                ]
+            },
+            "setter": "setInterval",
+            "enumCommands": []
+        }
+    },
+    "commands": {
+        "setInterval": {
+            "name": "setInterval",
+            "arguments": [
+                {
+                    "name": "interval",
+                    "optional": false,
+                    "schema": {
+                        "type": "string",
+                        "maxLength": 20
+                    }
+                }
+            ]
+        }
+    }
+}

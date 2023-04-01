@@ -1,0 +1,148 @@
+{
+    "dashboard": {
+        "states": [],
+        "actions": []
+    },
+    "detailView": [
+        {
+            "label": "{{i18n.label}}",
+            "displayType": "list",
+            "list": {
+                "command": {
+                    "name": "setInterval",
+                    "alternatives": [
+                        {
+                            "key": "1min",
+                            "value": "1 minute",
+                            "type": "active"
+                        },
+                        {
+                            "key": "5min",
+                            "value": "5 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "10min",
+                            "value": "10 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "15min",
+                            "value": "15 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "30min",
+                            "value": "30 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "60min",
+                            "value": "1 hour",
+                            "type": "active"
+                        },
+                        {
+                            "key": "180min",
+                            "value": "3 hours",
+                            "type": "active"
+                        }
+                    ],
+                    "argumentType": "string"
+                },
+                "state": {
+                    "value": "interval.value",
+                    "valueType": "string",
+                    "alternatives": [
+                        {
+                            "key": "1min",
+                            "value": "1 minute",
+                            "type": "active"
+                        },
+                        {
+                            "key": "5min",
+                            "value": "5 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "10min",
+                            "value": "10 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "15min",
+                            "value": "15 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "30min",
+                            "value": "30 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "60min",
+                            "value": "1 hour",
+                            "type": "active"
+                        },
+                        {
+                            "key": "180min",
+                            "value": "3 hours",
+                            "type": "active"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "automation": {
+        "conditions": [],
+        "actions": [
+            {
+                "label": "Set update interval",
+                "displayType": "list",
+                "list": {
+                    "alternatives": [
+                        {
+                            "key": "1min",
+                            "value": "1 minute",
+                            "type": "active"
+                        },
+                        {
+                            "key": "5min",
+                            "value": "5 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "10min",
+                            "value": "10 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "15min",
+                            "value": "15 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "30min",
+                            "value": "30 minutes",
+                            "type": "active"
+                        },
+                        {
+                            "key": "60min",
+                            "value": "1 hour",
+                            "type": "active"
+                        },
+                        {
+                            "key": "180min",
+                            "value": "3 hours",
+                            "type": "active"
+                        }
+                    ],
+                    "command": "setInterval",
+                    "argumentType": "string"
+                }
+            }
+        ]
+    },
+    "id": "partyvoice23922.aqisetinterval",
+    "version": 1
+}

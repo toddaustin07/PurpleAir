@@ -34,17 +34,48 @@ local initialized = false
 -- Constants
 local DEVICE_PROFILE = 'purpleair.v1'
 PERIODS = {
-                      ["pm1min"] = "pm2.5",
-                      ["pm10min"] = "pm2.5_10minute",
-                      ["pm30min"] = "pm2.5_30minute",
-                      ["pm60min"] = "pm2.5_60minute",
-                      ["pm6hr"] = "pm2.5_6hour",
-                      ["pm24hr"] = "pm2.5_24hour", 
-                      ["pm1wk"] = "pm2.5_1week"
-                    }
+            ["pm1min"] = "pm2.5",
+            ["pm10min"] = "pm2.5_10minute",
+            ["pm30min"] = "pm2.5_30minute",
+            ["pm60min"] = "pm2.5_60minute",
+            ["pm6hr"] = "pm2.5_6hour",
+            ["pm24hr"] = "pm2.5_24hour", 
+            ["pm1wk"] = "pm2.5_1week"
+          }
 
+local INTERVALS = {
+                    ['1min'] = 60,
+                    ['5min'] = 300,
+                    ['10min'] = 600,
+                    ['15min'] = 900,
+                    ['30min'] = 1800,
+                    ['60min'] = 3600,
+                    ['180min'] = 10800
+                  }
+                  
+local INTERVAL_TO_TXT = {
+                    ['1min'] = "1 minute",
+                    ['5min'] = "5 minutes",
+                    ['10min'] = "10 minutes",
+                    ['15min'] = "15 minutes",
+                    ['30min'] = "30 minutes",
+                    ['60min'] = "1 hour",
+                    ['180min'] = "3 hours"
+                  }
+                  
+local INTERVAL_FROM_TXT = {
+                    ["1 minute"] = '1min',
+                    ["5 minutes"] = '5min',
+                    ["10 minutes"] = '10min',
+                    ["15 minutes"] = '15min',
+                    ["30 minutes"] = '30min',
+                    ["1 hour"] = '60min',
+                    ["3 hours"] = '180min'
+                  }
 
 -- Custom capabilities
+local cap_aqival = capabilities['partyvoice23922.purpleaqi']
+local cap_interval = capabilities['partyvoice23922.aqisetinterval']
 local cap_sites = capabilities['partyvoice23922.aqisites']
 local cap_category = capabilities['partyvoice23922.aqicategory']
 
@@ -84,7 +115,7 @@ local function update_device(device, data)
 
   if data then
   
-    device:emit_event(capabilities.airQualitySensor.airQuality(data.aqi))
+    device:emit_event(cap_aqival.aqi(data.aqi))
     device:emit_event(cap_category.category(data.category))
     device:emit_event(cap_sites.sites(build_html(data.sites)))
   
@@ -146,7 +177,6 @@ local function do_refresh(device)
       local dist2deg = distance2degrees(coords[1])
       local range = {}
           
-      log.debug ('Box size units:', device.preferences.sizeunits)
       if device.preferences.sizeunits == 'miles' then
         range = {device.preferences.sizevalue/dist2deg[1], device.preferences.sizevalue/dist2deg[2]}
       else         -- Convert to km
@@ -193,17 +223,8 @@ local function setup_periodic_refresh(driver, device)
     driver:cancel_timer(device:get_field('refreshtimer'))
   end
   
-  local timervalue =  {
-                        ['1min'] = 60,
-                        ['5min'] = 300,
-                        ['10min'] = 600,
-                        ['15min'] = 900,
-                        ['30min'] = 1800,
-                        ['60min'] = 3600,
-                        ['180min'] = 10800
-                      }
-
-  local refreshtimer = driver:call_on_schedule(timervalue[device.preferences.interval], function()
+  log.debug (string.format('Resetting interval timer to %d seconds', INTERVALS[device:get_field('interval')]))
+  local refreshtimer = driver:call_on_schedule(INTERVALS[device:get_field('interval')], function()
       do_refresh(device)
     end)
     
@@ -221,6 +242,19 @@ local function handle_refresh(_, device, command)
   
 end
 
+
+local function handle_interval(driver, device, command)
+
+  log.info ('Update interval set by command:', command.command, command.args.interval)
+  
+  device:emit_event(cap_interval.interval(INTERVAL_TO_TXT[command.args.interval]))
+
+  device:set_field('interval', command.args.interval)
+  
+  setup_periodic_refresh(driver, device)
+
+end
+
 ------------------------------------------------------------------------
 --                REQUIRED EDGE DRIVER HANDLERS
 ------------------------------------------------------------------------
@@ -228,7 +262,16 @@ end
 -- Lifecycle handler to initialize existing devices AND newly discovered devices
 local function device_init(driver, device)
   
-  log.debug(device.id .. ": " .. device.device_network_id .. "> INITIALIZING")
+  log.info(device.id .. ": " .. device.device_network_id .. "> INITIALIZING")
+  
+  device:try_update_metadata({profile="purpleair.v1"})
+
+  local command_interval = device:get_latest_state("main", cap_interval.ID, cap_interval.interval.NAME)
+  if command_interval == ' ' then
+    device:set_field('interval', device.preferences.interval)
+  else
+    device:set_field('interval', INTERVAL_FROM_TXT[command_interval])
+  end
 
   device.thread:queue_event(do_refresh, device)
   
@@ -251,6 +294,8 @@ local function device_added (driver, device)
 			}
   
   update_device(device, init_data)
+  
+  device:emit_event(cap_interval.interval(' '))
   
 end
 
@@ -301,7 +346,9 @@ local function handler_infochanged (driver, device, event, args)
       device.thread:queue_event(do_refresh, device)
       
     elseif args.old_st_store.preferences.interval ~= device.preferences.interval then 
-      log.info ('Refresh fequency changed to: ', device.preferences.interval)
+      log.info ('Update interval changed to: ', device.preferences.interval)
+      device:set_field('interval', device.preferences.interval)
+      device:emit_event(cap_interval.interval(' '))
       
       setup_periodic_refresh(driver, device)
     end
@@ -321,7 +368,7 @@ local function discovery_handler(driver, _, should_continue)
 
     local MFG_NAME = 'TAUSTIN'
     local MODEL = 'PurpleAirV1'
-    local VEND_LABEL = 'Purple Air V1'
+    local VEND_LABEL = 'PurpleAir v1.0'
     local ID = 'PurpleAirV1' .. tostring(socket.gettime())
     local PROFILE = DEVICE_PROFILE
 
@@ -364,6 +411,9 @@ thisDriver = Driver("thisDriver", {
   capability_handlers = {
     [capabilities.refresh.ID] = {
       [capabilities.refresh.commands.refresh.NAME] = handle_refresh,
+    },
+    [cap_interval.ID] = {
+      [cap_interval.commands.setInterval.NAME] = handle_interval,
     },
   }
 })

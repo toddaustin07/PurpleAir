@@ -1,4 +1,4 @@
-name: 'Purple Air Quality'
+name: 'PurpleAir AQI v1.0'
 packageKey: 'purpleairv1'
 permissions:
     lan: {}

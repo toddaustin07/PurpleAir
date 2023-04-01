@@ -31,7 +31,7 @@ local function sensorAverage(sensors, field)
     sum = sum + sensor[field]
   end
   
-  log.debug ('Regular average:', sum / #sensors)
+  --log.debug ('Regular average:', sum / #sensors)
   return sum / #sensors
 end
 
@@ -50,7 +50,6 @@ local function sensorAverageWeighted(sensors, field)
   end
   
   nearest = math.min(table.unpack(distances))
-  log.debug ('Nearest=', nearest)
     
   for _, sensor in ipairs(sensors) do
     local val = sensor[field]
@@ -200,10 +199,8 @@ local function get_aqi(device, response, center_coords)
   end
 
   if (device.preferences.weighted == true) and (device.preferences.search == true) then
-    log.debug ('Computing weighted average')
     aqiValue = calcAQI(sensorAverageWeighted(sensors, 'part_count'))
   else
-    log.debug ('Computing regular average')
     aqiValue = calcAQI(sensorAverage(sensors, 'part_count'))
   end
   

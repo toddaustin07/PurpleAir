@@ -1,0 +1,40 @@
+{
+    "dashboard": {
+        "states": [
+            {
+                "label": "{{aqi.value}} {{aqi.unit}}"
+            }
+        ],
+        "actions": []
+    },
+    "detailView": [
+        {
+            "label": "{{i18n.label}}",
+            "displayType": "state",
+            "state": {
+                "label": "{{aqi.value}} {{aqi.unit}}",
+                "unit": "aqi.unit"
+            }
+        }
+    ],
+    "automation": {
+        "conditions": [
+            {
+                "label": "AQI Value",
+                "displayType": "numberField",
+                "numberField": {
+                    "value": "aqi.value",
+                    "valueType": "integer",
+                    "unit": "aqi.unit",
+                    "range": [
+                        0,
+                        1000
+                    ]
+                }
+            }
+        ],
+        "actions": []
+    },
+    "id": "partyvoice23922.purpleaqi",
+    "version": 1
+}

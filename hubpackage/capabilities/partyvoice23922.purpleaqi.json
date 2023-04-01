@@ -1,0 +1,34 @@
+{
+    "id": "partyvoice23922.purpleaqi",
+    "version": 1,
+    "status": "proposed",
+    "name": "purpleaqi",
+    "ephemeral": false,
+    "attributes": {
+        "aqi": {
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1000
+                    },
+                    "unit": {
+                        "type": "string",
+                        "enum": [
+                            "AQI"
+                        ],
+                        "default": "AQI"
+                    }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "value"
+                ]
+            },
+            "enumCommands": []
+        }
+    },
+    "commands": {}
+}
