@@ -71,6 +71,8 @@ For Rules, use the following:
 * command:  setInterval
 * command argument options: [1min | 5min | 10min | 15min | 30min | 60min | 180min]
 
+Please note that when changing the update interval from an automation, the value will override whatever is configured in device Settings, and device Settings will *not* show the changed value.  The update interval can be subsequently reset back by modifing the device Settings field.
+
 ### Problems
 If the device appears not to be working:
 * Confirm your proxy server type and address are properly configured
