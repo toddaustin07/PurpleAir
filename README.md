@@ -2,12 +2,13 @@
 SmartThings Edge Driver for [PurpleAir](https://www2.purpleair.com/) air quality sensor [API](https://api.purpleair.com/#api-welcome)
 
 #### Credit
-Some of this code is a port of the Hubitat [PurpleAir AQI Virtual Sensor.groovy driver](https://github.com/pfmiller0/Hubitat/blob/main/PurpleAir%20AQI%20Virtual%20Sensor.groovy) by [pfmiller0](https://github.com/pfmiller0).
+Key parts of this code is a port of the Hubitat [PurpleAir AQI Virtual Sensor.groovy driver](https://github.com/pfmiller0/Hubitat/blob/main/PurpleAir%20AQI%20Virtual%20Sensor.groovy) by Peter Miller [pfmiller0](https://github.com/pfmiller0).
 
 ### Features
 * Displays AQI, AQI category, and sensor names
 * Use multiple sensors within a defined latitude/longitude coordinate box, or use a specific sensor by index number
 * Automatic periodic updates
+* Dynamically update update interval via automations
 
 ### Pre-requisites
 * SmartThings Hub
@@ -19,7 +20,7 @@ Some of this code is a port of the Hubitat [PurpleAir AQI Virtual Sensor.groovy 
 Install edgebridge per the instructions [here](https://github.com/toddaustin07/edgebridge/blob/main/README.md).  Be sure to use only versions that are dated March 31, 2023 or later
 ### Driver
 * Go to this Edge driver [channel invite link](https://bestow-regional.api.smartthings.com/invite/Q1jP7BqnNNlL).
-* Enroll your hub and then select the PurpleAir Driver V1 to install to your hub.
+* Enroll your hub and then select the **PurpleAir AQI v1.0** to install to your hub.
 * Once the driver is available on your hub, use the SmartThings mobile app to do an *Add device / Scan for nearby devices*, and a new device will be created in whatever room in which your hub device is located.
 
 ## Configuration
@@ -59,7 +60,16 @@ The data displayed will be refreshed based on the update interval configured in 
 Reference the PurpleAir [map](https://map.purpleair.com/?mylocation) to see all sensors in your vicinity.
 
 ### Automations
-All three fields are available for IF conditions of automation routines or Rules.  No command actions are available in this device.
+#### IF conditions
+The AQI value and AQI category fields are available for IF conditions of automation routines or Rules.  
+
+#### THEN actions
+One command action is available to automation routines or Rules that will change the update interval.
+
+For Rules, use the following:
+* capability:  partyvoice23922.aqisetinterval
+* command:  setInterval
+* command argument options: [1min | 5min | 10min | 15min | 30min | 60min | 180min]
 
 ### Problems
 If the device appears not to be working:
