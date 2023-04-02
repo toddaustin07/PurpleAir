@@ -67,6 +67,7 @@ The AQI value and AQI category fields are available for IF conditions of automat
 One command action is available to automation routines or Rules that will change the update interval.
 
 For Rules, use the following:
+* component:  main
 * capability:  partyvoice23922.aqisetinterval
 * command:  setInterval
 * command argument options: [1min | 5min | 10min | 15min | 30min | 60min | 180min]
