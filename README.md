@@ -2,7 +2,7 @@
 SmartThings Edge Driver for [PurpleAir](https://www2.purpleair.com/) air quality sensor [API](https://api.purpleair.com/#api-welcome)
 
 #### Credit
-Key parts of this code is a port of the Hubitat [PurpleAir AQI Virtual Sensor.groovy driver](https://github.com/pfmiller0/Hubitat/blob/main/PurpleAir%20AQI%20Virtual%20Sensor.groovy) by Peter Miller [pfmiller0](https://github.com/pfmiller0).
+Key parts of this code are a port of the Hubitat [PurpleAir AQI Virtual Sensor.groovy driver](https://github.com/pfmiller0/Hubitat/blob/main/PurpleAir%20AQI%20Virtual%20Sensor.groovy) by Peter Miller [pfmiller0](https://github.com/pfmiller0).
 
 ### Features
 * Displays AQI, AQI category, and sensor names
